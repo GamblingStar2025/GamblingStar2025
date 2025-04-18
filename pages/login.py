@@ -20,27 +20,20 @@ if mode == "🔓 Login":
         try:
             auth_response = supabase.auth.sign_in_with_password({"email": email, "password": pw})
             user = auth_response.user
+
             if user:
-                st.success(f"✅ Eingeloggt als {user.email}")
+                # Nutze direkt eingegebene E-Mail zur Sicherheit
                 st.session_state["is_logged_in"] = True
-                st.session_state["user_email"] = user.email
+                st.session_state["user_email"] = email
+                st.success(f"✅ Eingeloggt als {email}")
                 st.rerun()
         except Exception as e:
-            st.error("❌ Login fehlgeschlagen: " + str(e))
+            st.error(f"❌ Login fehlgeschlagen: {e}")
 
-elif mode == "📝 Registrieren":
-    if st.button("🚀 Registrierung abschicken"):
+else:
+    if st.button("📝 Registrieren"):
         try:
-            response = supabase.auth.sign_up({"email": email, "password": pw})
-            if response.user:
-                st.success("✅ Registrierung erfolgreich! Bitte E-Mail bestätigen.")
-            else:
-                st.warning("⚠️ Anmeldung hat nicht funktioniert.")
+            supabase.auth.sign_up({"email": email, "password": pw})
+            st.success("✅ Registrierung erfolgreich. Bitte einloggen.")
         except Exception as e:
-            st.error("❌ Registrierung fehlgeschlagen: " + str(e))
-
-if st.session_state.get("is_logged_in"):
-    st.markdown(f"👤 Eingeloggt als: `{st.session_state['user_email']}`")
-    if st.button("🚪 Logout"):
-        st.session_state.clear()
-        st.rerun()
+            st.error(f"❌ Registrierung fehlgeschlagen: {e}")
