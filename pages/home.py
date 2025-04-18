@@ -1,18 +1,8 @@
-from session_manager import check_login
-check_login()
 
 import streamlit as st
 
-st.set_page_config(page_title="Home", layout="centered")
-st.title("🏠 Willkommen bei EuroGenius")
-
-if not st.session_state.get("is_logged_in"):
-    st.warning("🔒 Du bist nicht eingeloggt. Bitte zuerst anmelden.")
-    if st.button("➡️ Zur Anmeldung"):
+def show_home():
+    st.markdown("<h1 style='text-align:center;'>Willkommen bei EuroGenius</h1>", unsafe_allow_html=True)
+    st.write("Analyse. Strategie. Gewinnchance.")
+    if st.button("🎯 Jetzt starten"):
         st.switch_page("pages/login.py")
-    st.stop()
-
-st.success(f"✅ Eingeloggt als: {st.session_state.get('user_email', '')}")
-
-if st.button("🎲 Weiter zum Tippgenerator"):
-    st.switch_page("pages/main_app.py")
