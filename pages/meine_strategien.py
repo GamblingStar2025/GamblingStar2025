@@ -1,25 +1,27 @@
 
 import streamlit as st
-from st_supabase_connection import SupabaseConnection
 from custom_style import eurogenius_css
-import pandas as pd
+from supabase_connector import supabase
 
-st.set_page_config(page_title="📂 Meine Strategien", layout="centered")
+st.set_page_config(page_title="Meine Strategien", layout="centered")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
-st.title("📂 Meine gespeicherten Strategien")
+st.title("📚 Gespeicherte Strategien")
 
-conn = st.connection("supabase", type=SupabaseConnection)
-supabase = conn.client
+if not st.session_state.get("is_logged_in"):
+    st.error("⚠️ Du musst eingeloggt sein, um deine Strategien zu sehen.")
+    st.stop()
 
-email = st.session_state.get("user_email", None)
+email = st.session_state.get("user_email")
 
-if not email:
-    st.warning("Bitte zuerst einloggen.")
-else:
-    res = supabase.table("strategien").select("*").eq("email", email).execute()
-    if res.data:
-        df = pd.DataFrame(res.data)
-        df["parameters"] = df["parameters"].apply(lambda x: str(x))
-        st.dataframe(df[["strategy_name", "parameters"]], use_container_width=True)
+try:
+    res = supabase.table("Strategien").select("*").eq("email", email).execute()
+    daten = res.data
+
+    if daten:
+        for eintrag in daten:
+            st.markdown(f"### 💡 {eintrag['strategy_name']}")
+            st.json(eintrag['parameters'])
     else:
-        st.info("Noch keine Strategien gespeichert.")
+        st.info("ℹ️ Du hast noch keine Strategien gespeichert.")
+except Exception as e:
+    st.error(f"❌ Fehler beim Laden der Strategien: {e}")
