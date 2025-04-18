@@ -1,3 +1,5 @@
+from session_manager import check_login
+check_login()
 
 import streamlit as st
 import random
