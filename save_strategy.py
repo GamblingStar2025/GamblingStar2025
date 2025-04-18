@@ -10,9 +10,9 @@ def get_client():
 def save_strategy(user_email, strategy_name, parameters):
     supabase = get_client()
     data = {
-        "email": user_email,
-        "strategy_name": strategy_name,
-        "parameters": parameters
-    }
+    "email": email,
+    "strategy_name": "Heiße Zahlen",
+    "parameters": {"anteil": hot},  # statt "einstellungen"
+}
     response = supabase.table("strategien").insert(data).execute()
     return response
