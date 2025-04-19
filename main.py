@@ -1,3 +1,6 @@
-# Streamlit main entry
 import streamlit as st
-st.write('EuroGenius Startseite')
+from utils import check_login
+from navigation import show_navigation
+
+check_login()
+show_navigation()
