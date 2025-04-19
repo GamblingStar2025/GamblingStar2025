@@ -1,27 +1,15 @@
 
 import streamlit as st
-from custom_style import eurogenius_css
-from supabase_connector import supabase
+import pandas as pd
 
-st.set_page_config(page_title="Meine Strategien", layout="centered")
-st.markdown(eurogenius_css(), unsafe_allow_html=True)
-st.title("📚 Gespeicherte Strategien")
+st.title("🧠 Meine Strategien")
 
-if not st.session_state.get("is_logged_in"):
-    st.error("⚠️ Du musst eingeloggt sein, um deine Strategien zu sehen.")
-    st.stop()
-
-email = st.session_state.get("user_email")
-
-try:
-    res = supabase.table("Strategien").select("*").eq("email", email).execute()
-    daten = res.data
-
-    if daten:
-        for eintrag in daten:
-            st.markdown(f"### 💡 {eintrag['strategy_name']}")
-            st.json(eintrag['parameters'])
-    else:
-        st.info("ℹ️ Du hast noch keine Strategien gespeichert.")
-except Exception as e:
-    st.error(f"❌ Fehler beim Laden der Strategien: {e}")
+data = {
+    "Strategie": [
+        "Heiße Zahlen", "Kalte Zahlen", "Cluster-Analyse",
+        "Monaco Casino Style", "Rad-Prinzip", "KI-Prognose & Kombinatorik"
+    ],
+    "Anteil (%)": [60, 40, 55, 45, 50, 70]
+}
+df = pd.DataFrame(data)
+st.table(df)
