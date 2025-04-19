@@ -1,1 +1,0 @@
-# Strategie options and UI
