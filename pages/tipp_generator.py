@@ -1,3 +1,11 @@
+# Tipp Generator Page
 import streamlit as st
-st.title("🔮 Tipp Generator")
-st.write("Hier generierst du deine Tipps basierend auf den Strategien.")
+import pandas as pd
+
+def show():
+    st.title("Tipp Generator")
+    df = st.session_state.get('csv_data')
+    if df is not None:
+        st.write("Generiere Tipps basierend auf der CSV")
+    else:
+        st.warning("Bitte zuerst eine CSV hochladen.")
