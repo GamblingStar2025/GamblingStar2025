@@ -1,6 +1,6 @@
 import streamlit as st
 from utils import check_login
-from navigation import show_navigation
+from navigation import show_nav
 
-check_login()
-show_navigation()
+if check_login():
+    show_nav()
