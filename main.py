@@ -1,6 +1,7 @@
+# Entry point for Streamlit
 import streamlit as st
-from utils import check_login
-from navigation import show_nav
+from utils.session import init_session
+from utils.navigation import navigate
 
-if check_login():
-    show_nav()
+init_session()
+navigate()
