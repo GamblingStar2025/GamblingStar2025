@@ -1,3 +1,2 @@
-# Tippgenerator
 import streamlit as st
-st.write('Tipp Generator')
+st.title('Tipp Generator')
