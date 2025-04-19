@@ -1,0 +1,1 @@
+# Session check for login state
