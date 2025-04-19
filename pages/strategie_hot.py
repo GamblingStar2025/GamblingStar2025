@@ -12,10 +12,17 @@ if "lotto_daten" not in st.session_state:
 
 df = st.session_state["lotto_daten"]
 
-# Nur gültige Zahlenspalten verwenden (z. B. erste 5 Spalten)
 try:
-    zahlen = df.iloc[:, :5].values.flatten()
-    zahlen = [int(z) for z in zahlen if pd.notna(z)]
+    zahlen = []
+    for col in df.columns:
+        for value in df[col]:
+            try:
+                zahl = int(value)
+                if 1 <= zahl <= 50:
+                    zahlen.append(zahl)
+            except:
+                continue
+
     haeufigkeit = Counter(zahlen)
     heiße_zahlen = [zahl for zahl, _ in haeufigkeit.most_common(10)]
 
