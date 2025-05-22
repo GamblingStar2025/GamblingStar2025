@@ -5,7 +5,7 @@ from PIL import Image
 
 st.set_page_config(page_title="EuroGenius Start", layout="centered", initial_sidebar_state="collapsed")
 
-page_style = '''
+page_style = """
 <style>
 body {
     background-color: #0c0c0c;
@@ -22,7 +22,7 @@ h1 {
     color: gold;
 }
 </style>
-'''
+"""
 st.markdown(page_style, unsafe_allow_html=True)
 
 # Lade Logo über PIL
@@ -37,5 +37,6 @@ st.markdown("## EuroGenius – KI trifft auf Glück ✨")
 with st.spinner("App wird vorbereitet..."):
     time.sleep(2)
 
+# Verwende HTML-Redirect als "switch_page"-Ersatz
 if st.button("➡️ Jetzt starten"):
-    st.switch_page("main_app")
+    st.markdown('<meta http-equiv="refresh" content="0; url=./pages/main_app.py">', unsafe_allow_html=True)
