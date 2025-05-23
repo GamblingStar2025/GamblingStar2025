@@ -70,8 +70,8 @@ def generate_tip():
         monte_nums += combo
     monte_weighted = monte_nums * (monte_weight // 100)
     mix_pool = main_pool + hot_weighted + cluster_weighted + rad_weighted + monte_weighted
-    tip_zahlen = sorted(random.sample(list(set(mix_pool)), 5))
-    tip_sterne = sorted(random.sample(list(set(star_pool)), 2))
+    tip_zahlen = sorted(random.sample(mix_pool, 5))
+    tip_sterne = sorted(random.sample(star_pool, 2))
     return tip_zahlen, tip_sterne
 
 if st.button("🎯 Vorhersagen generieren"):
