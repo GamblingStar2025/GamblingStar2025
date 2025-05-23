@@ -1,42 +1,15 @@
 
 import streamlit as st
-import time
-from PIL import Image
 
-st.set_page_config(page_title="EuroGenius Start", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="EuroGenius Start", layout="centered")
+st.title("✨ Willkommen bei EuroGenius")
 
-page_style = """
-<style>
-body {
-    background-color: #0c0c0c;
-    color: #f1f1f1;
-    text-align: center;
-}
-img {
-    max-width: 250px;
-    margin-top: 50px;
-}
-h1 {
-    font-size: 2.5rem;
-    margin-top: 1rem;
-    color: gold;
-}
-</style>
-"""
-st.markdown(page_style, unsafe_allow_html=True)
+if 'page' not in st.session_state:
+    st.session_state.page = 'start'
 
-# Lade Logo über PIL
-try:
-    logo = Image.open("logo_gold.png")
-    st.image(logo, use_container_width=False)
-except:
-    st.warning("Logo konnte nicht geladen werden.")
+if st.button("📊 Analysen anzeigen"):
+    st.session_state.page = 'upload'
+    st.experimental_rerun()
 
-st.markdown("## EuroGenius – KI trifft auf Glück ✨")
-
-with st.spinner("App wird vorbereitet..."):
-    time.sleep(2)
-
-# Verwende HTML-Redirect als "switch_page"-Ersatz
-if st.button("➡️ Jetzt starten"):
-    st.markdown('<meta http-equiv="refresh" content="0; url=./pages/main_app.py">', unsafe_allow_html=True)
+if st.session_state.page == 'upload':
+    st.switch_page("pages/csv_upload.py")
