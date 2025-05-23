@@ -78,4 +78,5 @@ if file:
 
 if st.button("⬅️ Zurück zur Startseite"):
     st.session_state.page = 'start'
+    st.session_state.page = 'start'
     st.experimental_rerun()
