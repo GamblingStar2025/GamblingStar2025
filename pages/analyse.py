@@ -7,4 +7,4 @@ st.title("🧠 Analysezentrale")
 st.markdown("In dieser Zentrale lädst du deine CSV-Daten hoch und konfigurierst deine Analyse.")
 
 if st.button("📤 CSV hochladen"):
-    st.switch_page("pages/csv_upload.py")
+    st.switch_page("csv upload")

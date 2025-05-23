@@ -12,6 +12,11 @@ if "df" not in st.session_state:
     st.stop()
 
 df = st.session_state.df
+
+df_timestamp = st.session_state.get("csv_timestamp")
+if df_timestamp:
+    st.success(f"✔️ CSV geladen am: {df_timestamp}")
+
 columns = df.columns.tolist()
 zahlenspalten = [c for c in columns if any(str(n) in c.lower() for n in ["1", "2", "3", "4", "5"]) and not "stern" in c.lower()]
 sternspalten = [c for c in columns if "stern" in c.lower() or "star" in c.lower()]
