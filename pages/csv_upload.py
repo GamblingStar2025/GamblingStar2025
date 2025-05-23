@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from collections import Counter
-import numpy as np
 import random
 
 st.set_page_config(page_title="EuroGenius Analyse", layout="centered")
@@ -38,16 +37,14 @@ if file:
             for start, end in cluster_ranges:
                 if start <= num <= end:
                     cluster_counts[f"{start}-{end}"] += 1
-
         st.write(pd.DataFrame(list(cluster_counts.items()), columns=["Cluster", "Anzahl"]))
 
-        # Rad-Prinzip: Hoch/Niedrig und Gerade/Ungerade
+        # Rad-Prinzip
         st.subheader("♻️ Rad-Prinzip")
         hoch = sum(1 for n in zahlen if n > 25)
         niedrig = sum(1 for n in zahlen if n <= 25)
         gerade = sum(1 for n in zahlen if n % 2 == 0)
         ungerade = sum(1 for n in zahlen if n % 2 != 0)
-
         st.write(pd.DataFrame([
             ["Hoch (26–50)", hoch],
             ["Niedrig (1–25)", niedrig],
@@ -55,7 +52,7 @@ if file:
             ["Ungerade", ungerade]
         ], columns=["Kategorie", "Anzahl"]))
 
-        # Monte Carlo Simulation: häufigste Sets aus 100.000 Zufallsziehungen
+        # Monte Carlo
         st.subheader("🎲 Monte Carlo (100.000 Ziehungen)")
         simulated = []
         for _ in range(100000):
