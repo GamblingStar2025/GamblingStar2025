@@ -70,15 +70,19 @@ def generate_tip():
         monte_nums += combo
     monte_weighted = monte_nums * (monte_weight // 100)
     mix_pool = main_pool + hot_weighted + cluster_weighted + rad_weighted + monte_weighted
-    tip_zahlen = sorted(random.sample(mix_pool, 5))
-    tip_sterne = sorted(random.sample(star_pool, 2))
+    tip_zahlen = sorted(random.sample(list(set(mix_pool)), 5))
+    tip_sterne = sorted(random.sample(list(set(star_pool)), 2))
     return tip_zahlen, tip_sterne
 
 if st.button("🎯 Vorhersagen generieren"):
     tipps = [generate_tip() for _ in range(anzahl)]
     st.success(f"{anzahl} Tipps generiert für {modus}")
-    df_out = pd.DataFrame([{"Tipp": i+1, "Zahlen": t[0], "Sterne": t[1]} for i, t in enumerate(tipps)])
-    st.dataframe(df_out)
+    df_out = pd.DataFrame([{
+        "Tipp": f"Tipp {i+1}",
+        "Zahlen": ", ".join(str(z) for z in t[0]),
+        "Sterne": ", ".join(str(s) for s in t[1])
+    } for i, t in enumerate(tipps)])
+    st.dataframe(df_out, use_container_width=True)
     csv = df_out.to_csv(index=False).encode("utf-8")
     st.download_button("📥 Download als CSV", data=csv, file_name="eurogenius_tipps.csv", mime="text/csv")
 

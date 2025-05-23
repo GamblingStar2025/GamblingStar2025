@@ -17,4 +17,4 @@ csv = df_out.to_csv(index=False).encode("utf-8")
 st.download_button("📥 Tipps herunterladen", data=csv, file_name="eurogenius_tipps.csv", mime="text/csv")
 
 if st.button("🔁 Neue Analyse starten"):
-    st.switch_page("main")
+    st.markdown('<meta http-equiv="refresh" content="0; url=/">', unsafe_allow_html=True)
