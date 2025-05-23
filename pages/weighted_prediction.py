@@ -16,6 +16,11 @@ columns = df.columns.tolist()
 zahlenspalten = [c for c in columns if any(str(n) in c.lower() for n in ["1", "2", "3", "4", "5"]) and not "stern" in c.lower()]
 sternspalten = [c for c in columns if "stern" in c.lower() or "star" in c.lower()]
 
+# Spielmodus & Einstellungen
+st.subheader("🧩 Spiel-Einstellungen")
+modus = st.radio("Spielmodus", ["👤 Einzelspieler", "👥 Gruppe"])
+anzahl = st.slider("Wie viele Tipps möchtest du generieren?", 1, 100, 5)
+
 # Slider zur Gewichtung
 st.subheader("⚙️ Gewichtung der Strategien")
 hot_weight = st.slider("🔥 Hot/Cold", 0, 200, 100)
@@ -64,9 +69,15 @@ if len(zahlenspalten) >= 5 and len(sternspalten) >= 2:
         tip_sterne = sorted(random.sample(star_pool, 2))
         return tip_zahlen, tip_sterne
 
-    if st.button("🎟️ Vorhersage generieren"):
-        tipp = weighted_tip()
-        st.success(f"🎫 Dein Tipp: Zahlen: {tipp[0]}  ⭐ Sterne: {tipp[1]}")
+    if st.button("🎟️ Tipps generieren"):
+        tipps = [weighted_tip() for _ in range(anzahl)]
+        st.success(f"✅ {anzahl} Tipps generiert im Modus: {modus}")
+        df_out = pd.DataFrame([{"Tipp": i+1, "Zahlen": t[0], "Sterne": t[1]} for i, t in enumerate(tipps)])
+        st.dataframe(df_out)
+
+        csv = df_out.to_csv(index=False).encode("utf-8")
+        st.download_button("📥 Download als CSV", data=csv, file_name="eurogenius_tipps.csv", mime="text/csv")
+
 else:
     st.warning("Mindestens 5 Zahlen- und 2 Sternspalten erforderlich.")
 
