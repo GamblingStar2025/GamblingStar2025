@@ -76,8 +76,19 @@ def generate_tip():
     monte_weighted = monte_nums * (monte_weight // 100)
     mix_pool = main_pool + hot_weighted + cluster_weighted + rad_weighted + monte_weighted
     
-zahlen_pool = list(set(mix_pool))
-if len(zahlen_pool) < 5:
+
+    zahlen_pool = list(set(mix_pool))
+    if len(zahlen_pool) < 5:
+        zahlen_pool = list(range(1, 51))
+    tip_zahlen = sorted(random.sample(zahlen_pool, 5))
+
+    sterne_pool = list(set(star_pool))
+    if len(sterne_pool) < 2:
+        sterne_pool = list(range(1, 13))
+    tip_sterne = sorted(random.sample(sterne_pool, 2))
+
+    return tip_zahlen, tip_sterne
+
     zahlen_pool = list(range(1, 51))
 tip_zahlen = sorted(random.sample(zahlen_pool, 5))
 
