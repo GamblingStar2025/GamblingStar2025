@@ -77,6 +77,4 @@ if file:
         st.error(f"Fehler beim Einlesen: {e}")
 
 if st.button("⬅️ Zurück zur Startseite"):
-    st.session_state.page = 'start'
-    st.session_state.page = 'start'
-    st.experimental_rerun()
+    st.markdown('<meta http-equiv="refresh" content="0; url=/main">', unsafe_allow_html=True)
