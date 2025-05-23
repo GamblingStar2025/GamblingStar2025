@@ -15,6 +15,6 @@ if file:
         st.dataframe(df.tail())
 
         if st.button("➡️ Weiter zur Konfiguration"):
-            st.switch_page("pages/main_app.py")
+            st.switch_page("pages/super_prediction.py")
     except Exception as e:
         st.error(f"Fehler beim Einlesen: {e}")
