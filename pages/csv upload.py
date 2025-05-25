@@ -15,4 +15,4 @@ if file:
     st.success("✅ CSV erfolgreich geladen")
     st.dataframe(df.tail())
     if st.button("➡️ Zur Vorhersage"):
-        st.switch_page("super prediction")
+        st.switch_page("super_prediction")
