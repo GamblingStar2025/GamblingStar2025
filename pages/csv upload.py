@@ -14,5 +14,4 @@ if file:
     st.session_state.csv_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     st.success("✅ CSV erfolgreich geladen")
     st.dataframe(df.tail())
-    if st.button("➡️ Zur Vorhersage"):
-        st.switch_page("super_prediction")
+    st.page_link("pages/super_prediction.py", label="➡️ Zur Vorhersage", icon="🎯")
