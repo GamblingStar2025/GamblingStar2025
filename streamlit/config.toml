@@ -1,4 +1,9 @@
+
 [server]
 headless = true
-enableCORS = false
-port = 8501
+
+[theme]
+base="dark"
+
+[python]
+python_version = "3.10"
