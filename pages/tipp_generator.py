@@ -19,7 +19,6 @@ def lade_haeufigkeit(datei):
 uploaded_file = st.file_uploader("📄 Ziehungsdaten (CSV) hochladen", type="csv")
 if uploaded_file is not None:
     gewichtung = lade_haeufigkeit(uploaded_file)
-    st.write('📄 CSV-Vorschau:', pd.read_csv(uploaded_file).head())
     st.bar_chart(gewichtung)
 
     st.subheader("🔢 Zufallstipp basierend auf Gewichtung")
