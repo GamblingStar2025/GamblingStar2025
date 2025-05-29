@@ -6,6 +6,7 @@ import time
 
 st.set_page_config(page_title="🎮 Gamification", layout="centered")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🎮 Dein Fortschritt & Belohnungen")
 
 # Fortschrittsbalken + Fortschrittsstand

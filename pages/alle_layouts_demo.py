@@ -4,6 +4,7 @@ from custom_style import eurogenius_css
 
 st.set_page_config(page_title="🧱 Layouts Demo", layout="wide")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🎨 EuroGenius Layout-Demo")
 
 tab1, tab2, tab3 = st.tabs(["📊 Dashboard", "🧠 Expander", "📱 Schrittweise"])

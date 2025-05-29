@@ -1,9 +1,11 @@
+uploaded_file = st.session_state.get('csv_data', None)
 
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="🔍 Zahlenanalyse", layout="wide")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🔍 Analyse der Zahlenmuster")
 
 uploaded_file = st.markdown('ℹ️ **Lade eine Datei im Format wie `EuroMillion_Ziehungen.csv` hoch.**')

@@ -4,13 +4,14 @@ import pandas as pd
 from supabase_connector import supabase
 
 st.set_page_config(page_title="📊 Dashboard", layout="wide")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("📊 EuroGenius Dashboard")
 
 email = st.session_state.get("user_email", "gast@demo.com")
 
 # CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📥 Letzte Ziehungsdaten (CSV)", type="csv", help="Lade deine aktuelle EuroMillion-Ziehungsdatei hoch.")
 
-if uploaded_file:
+if uploaded_file is not None:
     df = uploaded_file
     st.subheader("📅 Letzte 5 Ziehungen")
     st.dataframe(df.tail(5))

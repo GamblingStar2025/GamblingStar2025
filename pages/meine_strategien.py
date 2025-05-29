@@ -6,6 +6,7 @@ import pandas as pd
 
 st.set_page_config(page_title="📂 Meine Strategien", layout="centered")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("📂 Meine gespeicherten Strategien")
 
 conn = st.connection("supabase", type=SupabaseConnection)

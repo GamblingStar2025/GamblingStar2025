@@ -5,6 +5,7 @@ import random
 from supabase_connector import supabase
 
 st.set_page_config(page_title="🤖 KI-Strategie", layout="centered")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🤖 KI-Strategie – Intelligente Tipp-Generierung")
 
 email = st.session_state.get("user_email", "gast@demo.com")

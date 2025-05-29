@@ -1,3 +1,4 @@
+uploaded_file = st.session_state.get('csv_data', None)
 
 import streamlit as st
 import pandas as pd
@@ -6,7 +7,7 @@ with st.sidebar:
     st.markdown("## 📁 Datenbasis")
     uploaded_file = st.file_uploader("Lade Ziehungsdaten (CSV)", type="csv")
 
-    if uploaded_file:
+    if uploaded_file is not None:
         try:
             df = pd.read_csv(uploaded_file)
             st.session_state["csv_data"] = df

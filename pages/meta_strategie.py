@@ -4,11 +4,13 @@ import pandas as pd
 import random
 
 st.set_page_config(page_title="🧠 Meta-Strategie", layout="wide")
+uploaded_file = st.session_state.get('csv_data', None)
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🧠 Meta-Strategie – Kombination aller Taktiken")
 
 # CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📄 Ziehungsdaten (CSV)", type="csv")
 
-if uploaded_file:
+if uploaded_file is not None:
     df = uploaded_file
     zahlen = df.iloc[:, 1:6].values.flatten()
 

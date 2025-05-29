@@ -5,6 +5,7 @@ from save_strategy import save_strategy
 
 st.set_page_config(page_title="Strategie-Zentrale", layout="centered")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🧠 Strategie-Zentrale – Dein Lotto-Setup")
 
 email = st.session_state.get("user_email", "gast@demo.com")

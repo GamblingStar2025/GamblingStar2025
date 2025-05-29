@@ -8,6 +8,7 @@ supabase = create_client(url, key)
 
 
 st.set_page_config(page_title="Login", layout="centered")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🔐 Login")
 
 rolle = st.radio("Login als:", ["gast", "premium"], horizontal=True)

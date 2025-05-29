@@ -5,6 +5,7 @@ from custom_style import eurogenius_css
 st.set_page_config(page_title="Upgrade auf Premium", layout="centered")
 st.markdown(eurogenius_css(), unsafe_allow_html=True)
 
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("💳 Upgrade auf Premium")
 
 st.markdown("**Nur CHF 5.99 / Monat für unbegrenzten Zugang**")

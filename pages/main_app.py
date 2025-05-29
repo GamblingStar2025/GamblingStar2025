@@ -29,6 +29,7 @@ else:
     st.warning("🚫 Unbekannter Zugriff – bitte neu einloggen.")
     st.stop()
 
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🎰 EuroGenius Tippgenerator")
 
 tipps = []

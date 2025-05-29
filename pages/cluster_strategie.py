@@ -4,6 +4,7 @@ import pandas as pd
 import random
 
 st.set_page_config(page_title="🧩 Cluster-Strategie", layout="centered")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("🧩 Cluster-Strategie")
 
 email = st.session_state.get("user_email", "gast@demo.com")
@@ -21,7 +22,7 @@ def lade_zahlen(datei):
     df = pd.read_csv(datei)
     return df.iloc[:, 1:6].values.flatten()
 
-if uploaded_file:
+if uploaded_file is not None:
     zahlen = lade_zahlen(uploaded_file)
     hohe = [z for z in zahlen if z > 25]
     niedrige = [z for z in zahlen if z <= 25]

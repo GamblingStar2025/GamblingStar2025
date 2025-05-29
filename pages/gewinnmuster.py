@@ -4,11 +4,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="📈 Gewinnmuster & Trends", layout="wide")
+uploaded_file = st.session_state.get('csv_data', None)
 st.title("📈 Gewinnmuster & Statistische Trends")
 
 # CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📄 Ziehungsdaten (CSV)", type="csv")
 
-if uploaded_file:
+if uploaded_file is not None:
     df = uploaded_file
     df_zahlen = df.iloc[:, 1:6]
 
