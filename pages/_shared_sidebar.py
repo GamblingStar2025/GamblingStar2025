@@ -1,5 +1,3 @@
-uploaded_file = st.session_state.get('csv_data', None)
-
 import streamlit as st
 import pandas as pd
 
