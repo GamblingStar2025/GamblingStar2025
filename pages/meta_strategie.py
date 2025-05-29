@@ -19,13 +19,13 @@ if uploaded_file is not None:
     strategie_namen = []
 
     if st.checkbox("🔢 Häufigkeitsbasierte Strategie"):
-        haeufigkeit = pd.Series(zahlen).value_counts().nlargest(15).index.tolist()
+        haeufigkeit = list(set(pd.Series(zahlen).value_counts().nlargest(15).index.tolist()))
         if len(haeufigkeit) >= 5:
             selected_strategies.append(random.sample(haeufigkeit, 5))
             strategie_namen.append("Häufigkeit")
 
     if st.checkbox("🧠 KI-Gewichtung: Top-Werte"):
-        top_zahlen = pd.Series(zahlen).value_counts().nlargest(10).index.tolist()
+        top_zahlen = list(set(pd.Series(zahlen).value_counts().nlargest(10).index.tolist()))
         if len(top_zahlen) >= 5:
             selected_strategies.append(random.sample(top_zahlen, 5))
             strategie_namen.append("KI-Top-Werte")
@@ -34,13 +34,13 @@ if uploaded_file is not None:
         fibo = [0, 1]
         while fibo[-1] < 100:
             fibo.append(fibo[-1] + fibo[-2])
-        fibo_zahlen = [z for z in zahlen if z in fibo]
+        fibo_zahlen = list(set([z for z in zahlen if z in fibo]))
         if len(fibo_zahlen) >= 5:
             selected_strategies.append(random.sample(fibo_zahlen, 5))
             strategie_namen.append("Fibonacci")
 
     if st.checkbox("♾️ Symmetrische Zahlen"):
-        sym = [z for z in zahlen if str(z) == str(z)[::-1] or z % 11 == 0]
+        sym = list(set([z for z in zahlen if str(z) == str(z)[::-1] or z % 11 == 0]))
         if len(sym) >= 5:
             selected_strategies.append(random.sample(sym, 5))
             strategie_namen.append("Symmetrisch")
