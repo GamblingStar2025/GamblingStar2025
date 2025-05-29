@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="🔍 Zahlenanalyse", layout="wide")
 st.title("🔍 Analyse der Zahlenmuster")
 
-uploaded_file = st.file_uploader("📄 Ziehungsdaten (CSV)", type="csv")
+uploaded_file = st.markdown('ℹ️ **Lade eine Datei im Format wie `EuroMillion_Ziehungen.csv` hoch.**')
+    st.file_uploader("📄 Ziehungsdaten (CSV)", type="csv", help='Datei mit 5 Lottozahlen pro Ziehung im CSV-Format (z. B. Spalten: Datum, Zahl1-Zahl5)')
 
 def gruppen_analyse(df):
     gruppen = {"hoch": [], "niedrig": [], "gerade": [], "ungerade": []}
@@ -21,7 +22,7 @@ def gruppen_analyse(df):
     return pd.DataFrame(gruppen)
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    df = uploaded_file
     if df.shape[1] >= 6:
         analyse = gruppen_analyse(df)
 

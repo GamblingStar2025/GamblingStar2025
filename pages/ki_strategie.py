@@ -16,7 +16,8 @@ def lade_haeufigkeit(datei):
     haeufigkeit = pd.Series(zahlen).value_counts().sort_index()
     return haeufigkeit
 
-uploaded_file = st.file_uploader("📄 Ziehungsdaten (CSV)", type="csv")
+uploaded_file = st.markdown('ℹ️ **Lade eine Datei im Format wie `EuroMillion_Ziehungen.csv` hoch.**')
+    st.file_uploader("📄 Ziehungsdaten (CSV)", type="csv", help='Datei mit 5 Lottozahlen pro Ziehung im CSV-Format (z. B. Spalten: Datum, Zahl1-Zahl5)')
 
 if uploaded_file is not None:
     gewichtung = lade_haeufigkeit(uploaded_file)
@@ -35,11 +36,12 @@ if uploaded_file is not None:
 
     if len(basis_zahlen) >= 5:
         tipp = random.sample(basis_zahlen, 5)
-        st.success(f"🔢 KI-Tipp: {sorted(tipp)}")
+        st.success('✅ Generierter Tipp: ' + str("🔢 KI-Tipp: {sorted(tipp)}")
 
         if st.button("💾 Strategie speichern"):
             try:
-                supabase.table("strategien").insert({
+                # Versuche zu speichern in Supabase
+            supabase.table("strategien").insert({
                     "email": email,
                     "strategy_name": "KI-Strategie",
                     "parameters": {

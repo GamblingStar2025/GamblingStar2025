@@ -17,7 +17,7 @@ if rolle == "gast":
     email = st.text_input("E-Mail (nur für Gastzugang)")
     if st.button("📩 Bestätigungslink senden (Demo)"):
         if "@" in email and "." in email:
-            st.success(f"✅ Eine Bestätigungsmail wurde an {email} *simuliert* gesendet.")
+            st.success('✅ Generierter Tipp: ' + str("✅ Eine Bestätigungsmail wurde an {email} *simuliert* gesendet.")
             st.session_state["is_logged_in"] = True
             st.session_state["user_email"] = email
             st.session_state["rolle"] = "gast"
@@ -56,3 +56,7 @@ if st.button("🚀 Magic-Link senden"):
         st.success("📩 Magic-Link wurde gesendet – bitte E-Mail prüfen.")
     except Exception as e:
         st.error(f"❌ Fehler beim Senden des Magic-Links: {e}")
+
+
+# Beispielhaft setzen – in Realität mit DB prüfen
+st.session_state['is_premium'] = True

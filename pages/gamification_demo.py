@@ -36,5 +36,5 @@ if st.button("🔁 Jetzt drehen"):
     time.sleep(1)
     ziehung = sorted(random.sample(range(1, 51), 5))
     sterne = sorted(random.sample(range(1, 13), 2))
-    st.success(f"🎯 Deine Zahlen: {ziehung} | ⭐ Sterne: {sterne}")
+    st.success('✅ Generierter Tipp: ' + str("🎯 Deine Zahlen: {ziehung} | ⭐ Sterne: {sterne}")
     st.balloons()
