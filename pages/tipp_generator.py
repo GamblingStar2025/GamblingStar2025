@@ -8,8 +8,8 @@ st.title("🎰 Tipp Generator")
 uploaded_file = st.session_state.get("csv_data", None)
 
 @st.cache_data
-def lade_haeufigkeit(datei):
-    df = pd.read_csv(datei)
+def lade_haeufigkeit(file):
+    df = pd.read_csv(file)
     zahlen = df.iloc[:, :6].values.flatten()
     haeufigkeit = pd.Series(zahlen).value_counts().sort_index()
     return haeufigkeit
