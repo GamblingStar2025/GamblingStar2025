@@ -7,7 +7,7 @@ st.set_page_config(page_title="♾️ Universelle Muster & Quantenanalyse", layo
 uploaded_file = st.session_state.get('csv_data', None)
 st.title("♾️ Universelle Muster & Quanten-Logik")
 
-# CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📄 Ziehungsdaten (CSV)", type="csv")
+# CSV wird global aus der Sidebar geladen
 
 fibonacci_set = set([0, 1])
 a, b = 0, 1

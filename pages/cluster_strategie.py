@@ -15,7 +15,7 @@ if not is_premium:
     st.info("🔓 [Upgrade auf Premium](https://example.com/upgrade)")
     st.stop()
 
-# CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📄 Ziehungsdaten (CSV)", type="csv")
+# CSV wird global aus der Sidebar geladen
 
 @st.cache_data
 def lade_zahlen(datei):
