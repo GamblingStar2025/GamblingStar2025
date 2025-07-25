@@ -9,7 +9,7 @@ st.title("📊 EuroGenius Dashboard")
 
 email = st.session_state.get("user_email", "gast@demo.com")
 
-# CSV wird global aus Sidebar geladen\nuploaded_file = st.session_state.get('csv_data', None)"📥 Letzte Ziehungsdaten (CSV)", type="csv", help="Lade deine aktuelle EuroMillion-Ziehungsdatei hoch.")
+# CSV wird global aus der Sidebar geladen
 
 if uploaded_file is not None:
     df = uploaded_file
