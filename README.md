@@ -9,6 +9,7 @@ Diese App analysiert EuroMillions-Ziehungen, generiert Tipps, Strategien und spe
 - Strategie-Seite mit Tabs, Slidern & Speicherfunktion
 - Tippgenerator (für Premium unbegrenzt, für Gast 3 Tipps)
 - Benutzerfreundliche Navigation (Zurück / Weiter)
+- 📈 Trading Bot Lab für Aktien, ETF & Krypto (OHLCV-Analyse, EMA/RSI-Signale, Candlestick-Scanner)
 - Vorbereitet für Abo-Modell & Zahlungssystem (Stripe)
 
 ## 🧱 Struktur
